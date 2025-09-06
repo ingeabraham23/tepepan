@@ -1,0 +1,99 @@
+.contenedor-horarios {
+  padding: 2px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.tabla-horarios {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-horarios th {
+  background-color: #333;
+  color: white;
+  padding: 2px;
+  text-align: center;
+}
+
+.tabla-horarios td {
+  padding: 0px;
+  font-size: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-horarios tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Colores por sector (aplicados a todas las celdas excepto unidad) */
+.sector-pavimento td:not(.unidad) {
+  background-color: #e7f1fb;
+}
+
+.sector-terracería td:not(.unidad) {
+  background-color: #eafaf0;
+}
+
+.sector-ambos td:not(.unidad) {
+  background-color: #fff5e6;
+}
+
+/* Colores fijos SOLO en la celda de unidad */
+.unidad {
+    font-size: 12px;
+  font-weight: bold;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.unidad-02 {
+  background-color: #2ECC40; /* Verde */
+}
+
+.unidad-05 {
+  background-color: #0074D9; /* Azul */
+}
+
+.unidad-08 {
+  background-color: #FF851B; /* Naranja */
+}
+
+.unidad-15 {
+  background-color: #B10DC9; /* Morado */
+}
+
+.btn-pdf {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin: 15px auto;
+}
+
+.btn-pdf:hover {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.btn-pdf:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
