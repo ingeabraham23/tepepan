@@ -65,14 +65,14 @@ const Horarios = () => {
         { sector: "Pavimento", teziu: "", tepe: "6:20", unidad: "08" },
         { sector: "Terracería", teziu: "", tepe: "6:30", unidad: "05" },
         {
-            
+
             sector: numeroSemana === 1 ? "Pavimento" : "Pavimento",
             teziu: numeroSemana === 1 ? "" : "",
             tepe: numeroSemana === 1 ? "6:45" : "6:45",
             unidad: numeroSemana === 1 ? "15" : "02"
         },
         {
-            
+
             sector: numeroSemana === 1 ? "Terracería" : "Terracería",
             teziu: numeroSemana === 1 ? "" : "",
             tepe: numeroSemana === 1 ? "7:00" : "7:00",
@@ -227,6 +227,70 @@ const Horarios = () => {
         },
     ];
 
+    const sabados = [
+        {
+            sector: numeroSemana === 1 ? "Ambos" : "Ambos",
+            teziu: numeroSemana === 1 ? "06:55" : "06:55",
+            tepe: numeroSemana === 1 ? "07:25" : "07:25",
+            unidad: numeroSemana === 1 ? "15" : "02"
+        },
+
+        {
+            sector: numeroSemana === 1 ? "Ambos" : "Ambos",
+            teziu: numeroSemana === 1 ? "07:20" : "07:20",
+            tepe: numeroSemana === 1 ? "07:40" : "07:40",
+            unidad: numeroSemana === 1 ? "02" : "15"
+        },
+
+        { sector: "Ambos", teziu: "07:45", tepe: "", unidad: "08" },
+
+        {
+            sector: numeroSemana === 1 ? "Ambos" : "Ambos",
+            teziu: numeroSemana === 1 ? "08:15" : "08:15",
+            tepe: numeroSemana === 1 ? "" : "",
+            unidad: numeroSemana === 1 ? "15" : "02"
+        },
+
+        {
+            sector: numeroSemana === 1 ? "Ambos" : "Ambos",
+            teziu: numeroSemana === 1 ? "08:40" : "08:40",
+            tepe: numeroSemana === 1 ? "" : "",
+            unidad: numeroSemana === 1 ? "02" : "15"
+        },
+    ];
+
+    const domingos = [
+        {
+            sector: numeroSemana === 1 ? "Ambos" : "Ambos",
+            teziu: numeroSemana === 1 ? "06:55" : "06:55",
+            tepe: numeroSemana === 1 ? "07:25" : "07:25",
+            unidad: numeroSemana === 1 ? "15" : "02"
+        },
+
+        {
+            sector: numeroSemana === 1 ? "Ambos" : "Ambos",
+            teziu: numeroSemana === 1 ? "07:20" : "07:20",
+            tepe: numeroSemana === 1 ? "07:40" : "07:40",
+            unidad: numeroSemana === 1 ? "02" : "15"
+        },
+
+        { sector: "Ambos", teziu: "07:45", tepe: "", unidad: "08" },
+
+        {
+            sector: numeroSemana === 1 ? "Ambos" : "Ambos",
+            teziu: numeroSemana === 1 ? "08:15" : "08:15",
+            tepe: numeroSemana === 1 ? "" : "",
+            unidad: numeroSemana === 1 ? "15" : "02"
+        },
+
+        {
+            sector: numeroSemana === 1 ? "Ambos" : "Ambos",
+            teziu: numeroSemana === 1 ? "08:40" : "08:40",
+            tepe: numeroSemana === 1 ? "" : "",
+            unidad: numeroSemana === 1 ? "02" : "15"
+        },
+    ];
+
     const generarPDF = () => {
         const doc = new jsPDF({
             orientation: "portrait",
@@ -348,32 +412,122 @@ const Horarios = () => {
                 onChange={(e) => setFecha(new Date(e.target.value))}
             />
             <p>Semana: {getNumeroSemana(fecha)} ({numeroSemana === 1 ? "impar" : "par"})</p>
-            <table className="tabla-horarios" ref={tablaRef}>
-                <thead>
-                    <tr>
-                        <th colSpan={4}>{formatearFecha(fecha)}</th>
-                    </tr>
-                    <tr>
-                        <th colSpan={4}>Horarios Tepepan</th>
-                    </tr>
-                    <tr>
-                        <th>Unidad</th>
-                        <th>Teziutlán</th>
-                        <th>Sector</th>
-                        <th>Tepepan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {horarios.map((h, i) => (
-                        <tr key={i} className={`sector-${h.sector.toLowerCase()}`}>
-                            <td className={`unidad unidad-${h.unidad}`}>{h.unidad}</td>
-                            <td>{h.teziu}</td>
-                            <td>{h.sector}</td>
-                            <td>{h.tepe}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div ref={tablaRef}>
+                <div className="contenedor-tablas" >
+                    {/* Tabla izquierda (primeros 10) */}
+                    <table className="tabla-horarios">
+                        <thead>
+                            <tr>
+                                <th colSpan={4}>{formatearFecha(fecha)}</th>
+                            </tr>
+                            <tr>
+                                <th colSpan={4}>Horarios Tepepan en la mañana</th>
+                            </tr>
+                            <tr>
+                                <th>Unidad</th>
+                                <th>Teziutlán</th>
+                                <th>Sector</th>
+                                <th>Tepepan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {horarios.slice(0, 10).map((h, i) => (
+                                <tr key={i} className={`unidad unidad-${h.unidad}`}>
+                                    <td>{h.unidad}</td>
+                                    <td>{h.teziu}</td>
+                                    <td>{h.sector}</td>
+                                    <td>{h.tepe}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    {/* Tabla derecha (restantes) */}
+                    <table className="tabla-horarios">
+                        <thead>
+                            <tr>
+                                <th colSpan={4}>{formatearFecha(fecha)}</th>
+                            </tr>
+                            <tr>
+                                <th colSpan={4}>Horarios Tepepan Durante el día</th>
+                            </tr>
+                            <tr>
+                                <th>Unidad</th>
+                                <th>Teziutlán</th>
+                                <th>Sector</th>
+                                <th>Tepepan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {horarios.slice(10).map((h, i) => (
+                                <tr key={i + 10} className={`unidad unidad-${h.unidad}`}>
+                                    <td>{h.unidad}</td>
+                                    <td>{h.teziu}</td>
+                                    <td>{h.sector}</td>
+                                    <td>{h.tepe}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+                {/* TABLAS 2 TABLAS 2 TABLAS 2 TABLAS 2 TABLAS 2 TABLAS 2 TABLAS 2 TABLAS 2 */}
+                <br></br>
+                <div className="contenedor-tablas" ref={tablaRef}>
+                    {/* Tabla izquierda (primeros 10) */}
+                    <table className="tabla-horarios">
+                        <thead>
+                            <tr>
+                                <th colSpan={4}>Sabados</th>
+                            </tr>
+                            <tr>
+                                <th>Unidad</th>
+                                <th>Teziutlán</th>
+                                <th>Sector</th>
+                                <th>Tepepan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {sabados.map((h, i) => (
+                                <tr key={i} className={`unidad unidad-${h.unidad}`}>
+                                    <td>{h.unidad}</td>
+                                    <td>{h.teziu}</td>
+                                    <td>{h.sector}</td>
+                                    <td>{h.tepe}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    {/* Tabla derecha (restantes) */}
+                    <table className="tabla-horarios">
+                        <thead>
+                            <tr>
+                                <th colSpan={4}>Domingos</th>
+                            </tr>
+                            <tr>
+                                <th>Unidad</th>
+                                <th>Teziutlán</th>
+                                <th>Sector</th>
+                                <th>Tepepan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {domingos.map((h, i) => (
+                                <tr key={i + 10} className={`unidad unidad-${h.unidad}`}>
+                                    <td>{h.unidad}</td>
+                                    <td>{h.teziu}</td>
+                                    <td>{h.sector}</td>
+                                    <td>{h.tepe}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <p style={{ textAlign: "center", fontSize: "12px", marginTop: "10px" }}>
+                    © Joyboy
+                </p>
+            </div>
 
             <button className="btn-pdf" onClick={generarPDF}>
                 Descargar horarios en PDF

@@ -1,73 +1,69 @@
-.contenedor-horarios {
-  padding: 2px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+.contenedor-tablas {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 4px;
 }
 
 .tabla-horarios {
-  width: 100%;
+  flex: 1; /* ambas tablas ocupan 50% del ancho */
   border-collapse: collapse;
+  font-size: 12px; /* más compacto */
+}
+
+.tabla-horarios th,
+.tabla-horarios td {
+  border: 1px solid #ccc;
+  padding: 2px 4px; /* menos padding */
+  text-align: center;
+  word-wrap: break-word;
 }
 
 .tabla-horarios th {
-  background-color: #333;
-  color: white;
-  padding: 2px;
-  text-align: center;
+  font-size: 11px;
+  background: #f5f5f5;
 }
 
 .tabla-horarios td {
-  padding: 0px;
-  font-size: 12px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+  font-size: 10px;
+  border: 1px solid black;
 }
 
-.tabla-horarios tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-/* Colores por sector (aplicados a todas las celdas excepto unidad) */
-.sector-pavimento td:not(.unidad) {
-  background-color: #e7f1fb;
-}
-
-.sector-terracería td:not(.unidad) {
-  background-color: #eafaf0;
-}
-
-.sector-ambos td:not(.unidad) {
-  background-color: #fff5e6;
+/* Ajuste extra para pantallas muy pequeñas */
+@media (max-width: 400px) {
+  .tabla-horarios {
+    font-size: 10px;
+  }
+  .tabla-horarios th {
+    font-size: 10px;
+  }
+  .tabla-horarios td {
+    font-size: 9px;
+    padding: 1px 2px;
+  }
 }
 
 /* Colores fijos SOLO en la celda de unidad */
 .unidad {
-    font-size: 12px;
-  font-weight: bold;
-  color: white;
-  border-radius: 6px;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
   text-align: center;
 }
 
 .unidad-02 {
-  background-color: #2ECC40; /* Verde */
+  background-color: lightgreen; /* Verde */
 }
 
 .unidad-05 {
-  background-color: #0074D9; /* Azul */
+  background-color: lightblue; /* Azul */
 }
 
 .unidad-08 {
-  background-color: #FF851B; /* Naranja */
+  background-color: lightyellow; /* Naranja */
 }
 
 .unidad-15 {
-  background-color: #B10DC9; /* Morado */
+  background-color: lightpink; /* Morado */
 }
 
 .btn-pdf {
@@ -96,4 +92,3 @@ h2 {
   transform: translateY(0);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
-
